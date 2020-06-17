@@ -168,19 +168,19 @@ class Sitetask:
     def PATHDIR_root(self) -> Path:
         return self._PATHFILE_executetaskpy.parent.parent
 
-    def PATHDIR_root_sitetask(self) -> Path:
-        return self.PATHDIR_root_sitetask_sitetaskpackage().parent
+    def PATHDIR_root_sitetaskexecutor(self) -> Path:
+        return self.PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage().parent
 
-    def PATHDIR_root_sitetask_sitetaskpackage(self) -> Path:
-        return self.PATHFILE_root_sitetask_sitetaskpackage_executetaskpy().parent
+    def PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage(self) -> Path:
+        return self.PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy().parent
 
 
-    def PATHFILE_root_sitetask_sitetaskpackage_executetaskpy(self) -> Path:
+    def PATHFILE_root_sitetask_sitetaskexecutorpackage_executetaskpy(self) -> Path:
         return self._PATHFILE_executetaskpy
 
 
-    def PATHFILE_root_sitetask_sitetaskpackage_updatepy(self) -> Path:
-        return self.PATHDIR_root_sitetask_sitetaskpackage() / 'update.py'
+    def PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_updatepy(self) -> Path:
+        return self.PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage() / 'update.py'
 
     def PATHFILE_home_pythonanywhereusername_updatepy(self) -> Path:
         return self.PATHDIR_home_pythonanywhereusername() / 'update.py'

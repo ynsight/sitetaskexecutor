@@ -84,11 +84,11 @@ github_username: '%github_username%'
 # paths:
 PATHDIR_home_pythonanywhereusername: '%PATHDIR_home_pythonanywhereusername%'
 PATHDIR_root: '%PATHDIR_root%'
-PATHDIR_root_sitetask: '%PATHDIR_root_sitetask%'
-PATHDIR_root_sitetask_sitetaskpackage: '%PATHDIR_root_sitetask_sitetaskpackage%'
-PATHFILE_root_sitetask_sitetaskpackage_executetaskpy: '%PATHFILE_root_sitetask_sitetaskpackage_executetaskpy%'
+PATHDIR_root_sitetaskexecutor: '%PATHDIR_root_sitetaskexecutor%'
+PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage: '%PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage%'
+PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy: '%PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy%'
 PATHFILE_wsgipy: '%PATHFILE_wsgipy%'
-PATHFILE_root_sitetask_sitetaskpackage_updatepy: '%PATHFILE_root_sitetask_sitetaskpackage_updatepy%'
+PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_updatepy: '%PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_updatepy%'
 PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereusername_updatepy%'
 '''
             .replace('%target_project%', str(self.target_project()))
@@ -100,11 +100,11 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
             \
             .replace('%PATHDIR_home_pythonanywhereusername%', str(self.PATHDIR_home_pythonanywhereusername()))
             .replace('%PATHDIR_root%', str(self.PATHDIR_root()))
-            .replace('%PATHDIR_root_sitetask%', str(self.PATHDIR_root_sitetask()))
-            .replace('%PATHDIR_root_sitetask_sitetaskpackage%', str(self.PATHDIR_root_sitetask_sitetaskpackage()))
-            .replace('%PATHFILE_root_sitetask_sitetaskpackage_executetaskpy%', str(self.PATHFILE_root_sitetask_sitetaskpackage_executetaskpy()))
+            .replace('%PATHDIR_root_sitetaskexecutor%', str(self.PATHDIR_root_sitetask()))
+            .replace('%PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage%', str(self.PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage()))
+            .replace('%PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy%', str(self.PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy()))
             .replace('%PATHFILE_wsgipy%', str(self.PATHFILE_wsgipy()))
-            .replace('%PATHFILE_root_sitetask_sitetaskpackage_updatepy%', str(self.PATHFILE_root_sitetask_sitetaskpackage_updatepy()))
+            .replace('%PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_updatepy%', str(self.PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_updatepy()))
             .replace('%PATHFILE_home_pythonanywhereusername_updatepy%', str(self.PATHFILE_home_pythonanywhereusername_updatepy()))
         )
 
