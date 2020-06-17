@@ -100,7 +100,7 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
             \
             .replace('%PATHDIR_home_pythonanywhereusername%', str(self.PATHDIR_home_pythonanywhereusername()))
             .replace('%PATHDIR_root%', str(self.PATHDIR_root()))
-            .replace('%PATHDIR_root_sitetaskexecutor%', str(self.PATHDIR_root_sitetask()))
+            .replace('%PATHDIR_root_sitetaskexecutor%', str(self.PATHDIR_root_sitetaskexecutor()))
             .replace('%PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage%', str(self.PATHDIR_root_sitetaskexecutor_sitetaskexecutorpackage()))
             .replace('%PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy%', str(self.PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy()))
             .replace('%PATHFILE_wsgipy%', str(self.PATHFILE_wsgipy()))

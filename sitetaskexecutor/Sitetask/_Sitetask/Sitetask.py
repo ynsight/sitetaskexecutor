@@ -175,7 +175,7 @@ class Sitetask:
         return self.PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy().parent
 
 
-    def PATHFILE_root_sitetask_sitetaskexecutorpackage_executetaskpy(self) -> Path:
+    def PATHFILE_root_sitetaskexecutor_sitetaskexecutorpackage_executetaskpy(self) -> Path:
         return self._PATHFILE_executetaskpy
 
 
