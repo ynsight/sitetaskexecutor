@@ -175,7 +175,7 @@ result already exist in PATHDIR_root_projektrepository="%PATHDIR_root_projektrep
         ver_minor = int(FCONTENT_VERSION_list[2])
 
         PATHDIR_root_out_projekt_pythonpath =\
-            self.PATHDIR_root() / \
+            self.PATHDIR_root() /\
             (
 '_out/Release/%NAME%-pub-%major%.%minor%-lnx/%NAME%/_projekt'
                  .replace('%NAME%', self.target_project().NAME())
@@ -183,7 +183,14 @@ result already exist in PATHDIR_root_projektrepository="%PATHDIR_root_projektrep
                  .replace('%minor%', str(ver_minor))
              )
 
-        PATHDIR_root_out_site = self.PATHDIR_root() / '_out/Release/%NAME%-pub-%major%.%minor%-lnx/site'
+        PATHDIR_root_out_site =\
+            self.PATHDIR_root() /\
+            (
+'_out/Release/%NAME%-pub-%major%.%minor%-lnx/site'
+                 .replace('%NAME%', self.target_project().NAME())
+                 .replace('%major%', str(ver_major))
+                 .replace('%minor%', str(ver_minor))
+            )
 
         wsgipy_template = \
 '''import sys, os
