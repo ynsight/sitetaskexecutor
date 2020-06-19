@@ -108,22 +108,50 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
             .replace('%PATHFILE_home_pythonanywhereusername_updatepy%', str(self.PATHFILE_home_pythonanywhereusername_updatepy()))
         )
 
+        logger.info(
+'''Deleting previously installed ynsight projects...'''
+        )
         for projekt in self.projekts_all():
             projekt.uninstall_as_package()
-
-
-        URL_github_projekt_repository = self.target_project().URLSSH_github_projekt_repository()
+        logger.info(
+'''Deleted previously installed ynsight projects!'''
+        )
 
         PATHDIR_root_projektrepository = self.PATHDIR_root() / self.target_project().NAME()
+
         if not PATHDIR_root_projektrepository.is_dir():
+            URL_github_projekt_repository = self.target_project().URLSSH_github_projekt_repository()
+            cmd_list = [
+                'git',
+                'clone',
+                URL_github_projekt_repository
+            ]
+
+            logger.info(
+'''Cloning target project="%NAME%"
+from URL_github_projekt_repository="%URL_github_projekt_repository%"
+to cwd PATHDIR_root="%PATHDIR_root%"
+with cmd="%cmd%"
+results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
+                .replace('%NAME%', self.target_project().NAME())
+                .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
+                .replace('%PATHDIR_root%', str(self.PATHDIR_root()))
+                .replace('%cmd%', ' '.join(cmd_list))
+                .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
+            )
+
             subprocess.run(
-                [
-                    'git',
-                    'clone',
-                    URL_github_projekt_repository
-                ],
+                cmd_list,
                 cwd=str(self.PATHDIR_root())
             )
+        else:
+            logger.info(
+'''Skipping cloning target project="%NAME%"
+result already exist in PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
+                .replace('%NAME%', self.target_project().NAME())
+                .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
+            )
+
 
         PATHfile_root_projektrepository_makepy = PATHDIR_root_projektrepository / 'make.py'
         subprocess.run(
@@ -135,13 +163,10 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
         )
 
         # wsgi.py:
-        logger.info('Process wsgi.py...')
         logger.info(
-'''PATHFILE_wsgipy=%PATHFILE_wsgipy%'''
-            .replace('%PATHFILE_wsgipy%', str(self.PATHFILE_wsgipy()))
+'''Writing wsgi.py file at "%PATHFILE_wsgipy%"...'''
+                .replace('%PATHFILE_wsgipy%', str(self.PATHFILE_wsgipy()))
         )
-
-        logger.info('Write wsgi.py file...')
 
         PATHFILE_VERSION = PATHDIR_root_projektrepository / 'VERSION'
         FCONTENT_VERSION_list = PATHFILE_VERSION.read_text().splitlines()
@@ -183,5 +208,7 @@ application = create_app()'''
         )
 
         logger.info('WSGIPY_FILE_BEGIN' + wsgipy_fc + 'WSGIPY_FILE_END')
-        logger.info('Write wsgi.py file!')
-        logger.info('Process wsgi.py!')
+        logger.info(
+'''Writed wsgi.py file at "%PATHFILE_wsgipy%"!'''
+                .replace('%PATHFILE_wsgipy%', str(self.PATHFILE_wsgipy()))
+        )

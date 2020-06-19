@@ -157,14 +157,42 @@ pythonanywhere_username: '%pythonanywhere_username%'
         )
 
         PATHDIR_testpy_projektrepository = PATHDIR_testpy / self.NAME()
+        URL_github_projekt_repository = self.URL_github_projekt_repository()
+        cmd_list = [
+            'git',
+            'clone',
+            URL_github_projekt_repository
+        ]
+
+        logger.info(
+'''Cloning project to upload project="%NAME%"
+from URL_github_projekt_repository="%URL_github_projekt_repository%"
+to PATHDIR_cwd="%PATHDIR_root%"
+with cmd="%cmd%"
+results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository%"...'''
+            .replace('%NAME%', self.NAME())
+            .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
+            .replace('%PATHDIR_cwd%', str(self.PATHDIR_root()))
+            .replace('%cmd%', ' '.join(cmd_list))
+            .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
+        )
 
         subprocess.run(
-            [
-                'git',
-                'clone',
-                self.URL_github_projekt_repository()
-            ],
+            cmd_list,
             cwd=str(PATHDIR_testpy)
+        )
+
+        logger.info(
+'''Cloned project to upload project="%NAME%"
+from URL_github_projekt_repository="%URL_github_projekt_repository%"
+to PATHDIR_cwd="%PATHDIR_root%"
+with cmd="%cmd%"
+results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository%"!'''
+            .replace('%NAME%', self.NAME())
+            .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
+            .replace('%PATHDIR_cwd%', str(self.PATHDIR_root()))
+            .replace('%cmd%', ' '.join(cmd_list))
+            .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
         )
 
         PATHFILE_YNSIGHT_PYPI_PWD_txt = Path(self.task().PATHDIR_home_pythonanywhereusername(), 'YNSIGHT_PYPI_PWD.txt')

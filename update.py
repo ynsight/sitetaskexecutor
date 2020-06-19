@@ -44,16 +44,52 @@ PATHFILE_root_sitetaskexecutor_executetaskpy=%PATHFILE_root_sitetaskexecutor_exe
     logger.info('Created root dir!')
 
 
-    logger.info('Updating sitetask package...')
+    logger.info(
+        'Updating(cloning) \'sitetaskexecutor\' package in cwd "%PATHDIR_root%"...'
+            .replace('%PATHDIR_root%', str(PATHDIR_root))
+    )
+
+    URL_github_projekt_repository = 'https://github.com/ynsight/sitetaskexecutor.git'
+    cmd_list = [
+        'git',
+        'clone',
+        URL_github_projekt_repository
+    ]
+
+    logger.info(
+'''Cloning project="sitetaskexecutor"
+from URL_github_projekt_repository="%URL_github_projekt_repository%"
+to PATHDIR_cwd="%PATHDIR_root%"
+with cmd="%cmd%"
+results with PATHDIR_root_sitetaskexecutor="%PATHDIR_root_sitetaskexecutor%"...'''
+        .replace('%NAME%', '')
+        .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
+        .replace('%PATHDIR_cwd%', str(PATHDIR_root))
+        .replace('%cmd%', ' '.join(cmd_list))
+        .replace('%PATHDIR_root_sitetaskexecutor%', str(PATHDIR_root_sitetaskexecutor))
+    )
+
     subprocess.run(
-        ['git', 'clone', 'https://github.com/ynsight/sitetaskexecutor.git'],
+        cmd_list,
         cwd=str(PATHDIR_root)
     )
-    logger.info('Updated sitetask package!')
+
+    logger.info(
+'''Cloned project="sitetaskexecutor"
+from URL_github_projekt_repository="%URL_github_projekt_repository%"
+to PATHDIR_cwd="%PATHDIR_root%"
+with cmd="%cmd%"
+results with PATHDIR_root_sitetaskexecutor="%PATHDIR_root_sitetaskexecutor%"!'''
+        .replace('%NAME%', '')
+        .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
+        .replace('%PATHDIR_cwd%', str(PATHDIR_root))
+        .replace('%cmd%', ' '.join(cmd_list))
+        .replace('%PATHDIR_root_sitetaskexecutor%', str(PATHDIR_root_sitetaskexecutor))
+    )
 
 
-    logger.info('Running sitetask package...')
+    logger.info('Running \'sitetaskexecutor\' package...')
     subprocess.run(
         ['python3.6', PATHFILE_root_sitetaskexecutor_executetaskpy]
     )
-    logger.info('Runned sitetask package!')
+    logger.info('Runned \'sitetaskexecutor\' package!')
