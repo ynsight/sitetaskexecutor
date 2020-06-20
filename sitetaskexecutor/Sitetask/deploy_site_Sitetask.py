@@ -137,7 +137,7 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
                 .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
                 .replace('%PATHDIR_root%', str(self.PATHDIR_root()))
                 .replace('%cmd%', ' '.join(cmd_list))
-                .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
+                .replace('%PATHDIR_root_projektrepository%', str(PATHDIR_root_projektrepository))
             )
 
             subprocess.run(
@@ -149,7 +149,7 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
 '''Skipping cloning target project="%NAME%"
 result already exist in PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
                 .replace('%NAME%', self.target_project().NAME())
-                .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
+                .replace('%PATHDIR_root_projektrepository%', str(PATHDIR_root_projektrepository))
             )
 
 
