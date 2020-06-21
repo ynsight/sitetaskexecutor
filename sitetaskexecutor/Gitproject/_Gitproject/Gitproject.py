@@ -167,14 +167,14 @@ pythonanywhere_username: '%pythonanywhere_username%'
         logger.info(
 '''Cloning project to upload project="%NAME%"
 from URL_github_projekt_repository="%URL_github_projekt_repository%"
-to PATHDIR_cwd="%PATHDIR_root%"
+to PATHDIR_cwd="%PATHDIR_cwd%"
 with cmd="%cmd%"
 results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository%"...'''
             .replace('%NAME%', self.NAME())
             .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
-            .replace('%PATHDIR_cwd%', str(self.PATHDIR_root()))
+            .replace('%PATHDIR_cwd%', str(PATHDIR_testpy))
             .replace('%cmd%', ' '.join(cmd_list))
-            .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
+            .replace('%PATHDIR_testpy_projektrepository%', str(PATHDIR_testpy_projektrepository))
         )
 
         subprocess.run(
@@ -185,14 +185,14 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
         logger.info(
 '''Cloned project to upload project="%NAME%"
 from URL_github_projekt_repository="%URL_github_projekt_repository%"
-to PATHDIR_cwd="%PATHDIR_root%"
+to PATHDIR_cwd="%PATHDIR_cwd%"
 with cmd="%cmd%"
 results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository%"!'''
             .replace('%NAME%', self.NAME())
             .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
-            .replace('%PATHDIR_cwd%', str(self.PATHDIR_root()))
+            .replace('%PATHDIR_cwd%', str(PATHDIR_testpy))
             .replace('%cmd%', ' '.join(cmd_list))
-            .replace('%PATHDIR_root_projektrepository%', str(self.PATHDIR_root_projektrepository()))
+            .replace('%PATHDIR_testpy_projektrepository%', str(PATHDIR_testpy_projektrepository))
         )
 
         PATHFILE_YNSIGHT_PYPI_PWD_txt = Path(self.task().PATHDIR_home_pythonanywhereusername(), 'YNSIGHT_PYPI_PWD.txt')
