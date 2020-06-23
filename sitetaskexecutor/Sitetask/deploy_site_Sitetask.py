@@ -219,3 +219,24 @@ application = create_app()'''
 '''Writed wsgi.py file at "%PATHFILE_wsgipy%"!'''
                 .replace('%PATHFILE_wsgipy%', str(self.PATHFILE_wsgipy()))
         )
+
+        import requests,urllib3
+        try:
+            request_result = requests.get(
+                'http://%pythonanywhereusername%.pythonanywhere.com/'
+                    .replace(
+                        '%pythonanywhere_username%',
+                        self.target_project().pythonanywhere_username()
+                    ),
+                # timeout=self._request_timeout
+            )
+            print(request_result.text)
+
+        except requests.exceptions.Timeout as e:
+            print(e)
+
+        except urllib3.exceptions.MaxRetryError as e:
+            print(e)
+
+        except requests.exceptions.ConnectionError as e:
+            print(e)
