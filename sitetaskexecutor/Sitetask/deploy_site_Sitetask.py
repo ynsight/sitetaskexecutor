@@ -223,7 +223,7 @@ application = create_app()'''
         import requests,urllib3
         try:
             request_result = requests.get(
-                'http://%pythonanywhereusername%.pythonanywhere.com/'
+                'http://%pythonanywhere_username%.pythonanywhere.com/'
                     .replace(
                         '%pythonanywhere_username%',
                         self.target_project().pythonanywhere_username()
