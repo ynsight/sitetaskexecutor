@@ -26,3 +26,6 @@ class rs_Gitproject(
             'rt_.py',
             'rt.py'
         ]
+
+    def additional_pythonpaths(self) -> List[str]:
+        return []

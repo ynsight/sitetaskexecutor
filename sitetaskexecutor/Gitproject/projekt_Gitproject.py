@@ -26,3 +26,6 @@ class projekt_Gitproject(
             'projekt_.py',
             'projekt.py'
         ]
+
+    def additional_pythonpaths(self) -> List[str]:
+        return []

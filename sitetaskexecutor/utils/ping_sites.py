@@ -50,4 +50,15 @@ and not '500 Internal Server Error' in response_text:
     except requests.exceptions.ConnectionError as e:
         print(e)
 
-    print(pythonanywhere_username, URL_site, is_online)
+    is_online_all = is_online
+    is_online_index = is_online
+
+    report =\
+'''%pythonanywhere_username%:
+  URL_site: %URL_site%
+  %is_online_all%\n'''\
+        .replace('%pythonanywhere_username%', pythonanywhere_username)\
+        .replace('%URL_site%', URL_site)\
+        .replace('%is_online_all%', str(is_online_all))
+
+    print(report)

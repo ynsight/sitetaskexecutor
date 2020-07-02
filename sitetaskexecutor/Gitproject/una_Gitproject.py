@@ -26,3 +26,8 @@ class una_Gitproject(
             'una_.py',
             'una.py'
         ]
+
+    def additional_pythonpaths(self) -> List[str]:
+        return [
+            str(self.task().PATHDIR_root() / Path(self.NAME(), 'src', 'una', 'lib'))
+        ]

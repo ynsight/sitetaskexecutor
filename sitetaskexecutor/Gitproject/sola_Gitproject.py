@@ -20,3 +20,6 @@ class sola_Gitproject(
 
     def package_executables(self) -> List[str]:
         return []
+
+    def additional_pythonpaths(self) -> List[str]:
+        return []

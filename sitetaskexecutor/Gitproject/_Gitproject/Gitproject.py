@@ -83,10 +83,10 @@ pythonanywhere_username: '%pythonanywhere_username%'
 
     # names:
     def NAME(self) -> str:
-        raise NotImplementedError("")
+        raise NotImplementedError
 
     def version_list(self) -> List[int]:
-        raise NotImplementedError("")
+        raise NotImplementedError
 
 
     def projektsitepub_package(self) -> str:
@@ -118,7 +118,7 @@ pythonanywhere_username: '%pythonanywhere_username%'
         return self.task().github_username()
 
     def github_url_type(self) -> str:
-        raise NotImplementedError("")
+        raise NotImplementedError
 
     def URLSSH_github_projekt_repository(self) -> str:
         return '''git@github.com:%github_username%/%NAME%.git''' \
@@ -212,7 +212,7 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
 
     # pythonanywhere:
     def pythonanywhere_username(self) -> str:
-        raise NotImplementedError("")
+        raise NotImplementedError
 
     def uninstall_as_package(self) -> None:
         logger.info('Unnstall as package "%projekt%"...'.replace('%projekt%', self.NAME()))
@@ -256,7 +256,11 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
             logger.info('Uninstall as package "%projekt%" is NOT supported!'.replace('%projekt%', self.NAME()))
 
     def is_uninstall_as_package_supported(self) -> bool:
-        raise NotImplementedError("")
+        raise NotImplementedError
 
     def package_executables(self) -> List[str]:
-        raise NotImplementedError("")
+        raise NotImplementedError
+
+
+    def additional_pythonpaths(self) -> List[str]:
+        raise NotImplementedError

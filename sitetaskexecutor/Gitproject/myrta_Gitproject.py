@@ -26,3 +26,6 @@ class myrta_Gitproject(
             'myrta_.py',
             'myrta.py'
         ]
+
+    def additional_pythonpaths(self) -> List[str]:
+        return []

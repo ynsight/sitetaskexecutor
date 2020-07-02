@@ -27,3 +27,6 @@ class agent_Gitproject(
             'agent_.py',
             'agent.py'
         ]
+
+    def additional_pythonpaths(self) -> List[str]:
+        return []

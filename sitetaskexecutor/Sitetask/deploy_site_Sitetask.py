@@ -198,17 +198,26 @@ from pathlib import Path
 
 sys.path = [
     '%PATHDIR_root_out_projekt_pythonpath%',
-    '%PATHDIR_root_out_site%'
+    '%PATHDIR_root_out_site%'%additional_pythonpaths%
 ] + sys.path
 
 from sitepub_%NAME%.Sitepubapp import create_app
 
 application = create_app()'''
 
+        if len(self.target_project().additional_pythonpaths() > 0):
+            additional_pythonpaths_result =\
+''',\n\n# additional_pythonpaths:\n''' + ',\n'.join(self.target_project().additional_pythonpaths())
+
+        else:
+            additional_pythonpaths_result =\
+'''\n\n# additional_pythonpaths:'''
+
         wsgipy_fc = wsgipy_template\
             .replace('%PATHDIR_root_out_projekt_pythonpath%', str(PATHDIR_root_out_projekt_pythonpath))\
             .replace('%PATHDIR_root_out_site%', str(PATHDIR_root_out_site))\
-            .replace('%NAME%', self.target_project().NAME())
+            .replace('%NAME%', self.target_project().NAME())\
+            .replace('%additional_pythonpaths_result%', additional_pythonpaths_result)
 
         self.PATHFILE_wsgipy().write_text(
             wsgipy_fc

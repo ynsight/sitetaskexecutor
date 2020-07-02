@@ -27,3 +27,6 @@ class ynsbase_Gitproject(
             'ynsbase_.py',
             'ynsbase.py'
         ]
+
+    def additional_pythonpaths(self) -> List[str]:
+        return []

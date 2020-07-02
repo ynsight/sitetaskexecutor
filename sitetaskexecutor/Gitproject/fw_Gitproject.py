@@ -27,3 +27,6 @@ class fw_Gitproject(
             'fw_.py',
             'fw.py'
         ]
+
+    def additional_pythonpaths(self) -> List[str]:
+        return []
