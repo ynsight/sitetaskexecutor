@@ -205,7 +205,7 @@ from sitepub_%NAME%.Sitepubapp import create_app
 
 application = create_app()'''
 
-        if len(self.target_project().additional_pythonpaths() > 0):
+        if len(self.target_project().additional_pythonpaths()) > 0:
             additional_pythonpaths_result =\
 ''',\n\n# additional_pythonpaths:\n''' + ',\n'.join(self.target_project().additional_pythonpaths())
 
