@@ -8,6 +8,7 @@ logger.setLevel(logging.DEBUG)
 logger.addHandler(handler)
 
 from sitetaskexecutor.Sitetask._Sitetask.Sitetask import *
+import textwrap
 
 
 class deploy_site_Sitetask(
@@ -206,8 +207,12 @@ from sitepub_%NAME%.Sitepubapp import create_app
 application = create_app()'''
 
         if len(self.target_project().additional_pythonpaths()) > 0:
+            additional_pythonpaths_list_result = ''
+            for i,additional_pythonpath in enumerate(self.target_project().additional_pythonpaths()):
+                additional_pythonpaths_list_result += ('' if i==0 else ',\n') + "'" + additional_pythonpath + "'"
+
             additional_pythonpaths_result =\
-''',\n\n# additional_pythonpaths:\n''' + ',\n'.join(self.target_project().additional_pythonpaths())
+''',\n\n# additional_pythonpaths:\n''' + additional_pythonpaths_list_result
 
         else:
             additional_pythonpaths_result =\
@@ -217,7 +222,7 @@ application = create_app()'''
             .replace('%PATHDIR_root_out_projekt_pythonpath%', str(PATHDIR_root_out_projekt_pythonpath))\
             .replace('%PATHDIR_root_out_site%', str(PATHDIR_root_out_site))\
             .replace('%NAME%', self.target_project().NAME())\
-            .replace('%additional_pythonpaths%', additional_pythonpaths_result)
+            .replace('%additional_pythonpaths%', textwrap.indent(additional_pythonpaths_result, 4*' '))
 
         self.PATHFILE_wsgipy().write_text(
             wsgipy_fc
