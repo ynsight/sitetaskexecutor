@@ -217,7 +217,7 @@ application = create_app()'''
             .replace('%PATHDIR_root_out_projekt_pythonpath%', str(PATHDIR_root_out_projekt_pythonpath))\
             .replace('%PATHDIR_root_out_site%', str(PATHDIR_root_out_site))\
             .replace('%NAME%', self.target_project().NAME())\
-            .replace('%additional_pythonpaths_result%', additional_pythonpaths_result)
+            .replace('%additional_pythonpaths%', additional_pythonpaths_result)
 
         self.PATHFILE_wsgipy().write_text(
             wsgipy_fc
