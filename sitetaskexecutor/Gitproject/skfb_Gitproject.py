@@ -23,3 +23,12 @@ class skfb_Gitproject(
 
     def additional_pythonpaths(self) -> List[str]:
         return []
+
+    def clone_target_repository_for_site(self,
+        PATHDIR_root_projektrepository:Path=None,
+        URL_github_projekt_repository:str=None
+    ) -> None:
+        self._clone_target_repository_for_site_with_gitclone(
+            PATHDIR_root_projektrepository=PATHDIR_root_projektrepository,
+            URL_github_projekt_repository=URL_github_projekt_repository
+        )

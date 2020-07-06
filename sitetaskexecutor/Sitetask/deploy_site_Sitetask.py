@@ -120,39 +120,9 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
 
         PATHDIR_root_projektrepository = self.PATHDIR_root() / self.target_project().NAME()
 
-        if not PATHDIR_root_projektrepository.is_dir():
-            URL_github_projekt_repository = self.target_project().URLSSH_github_projekt_repository()
-            cmd_list = [
-                'git',
-                'clone',
-                URL_github_projekt_repository
-            ]
-
-            logger.info(
-'''Cloning target project="%NAME%"
-from URL_github_projekt_repository="%URL_github_projekt_repository%"
-to cwd PATHDIR_root="%PATHDIR_root%"
-with cmd="%cmd%"
-results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
-                .replace('%NAME%', self.target_project().NAME())
-                .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
-                .replace('%PATHDIR_root%', str(self.PATHDIR_root()))
-                .replace('%cmd%', ' '.join(cmd_list))
-                .replace('%PATHDIR_root_projektrepository%', str(PATHDIR_root_projektrepository))
-            )
-
-            subprocess.run(
-                cmd_list,
-                cwd=str(self.PATHDIR_root())
-            )
-        else:
-            logger.info(
-'''Skipping cloning target project="%NAME%"
-result already exist in PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
-                .replace('%NAME%', self.target_project().NAME())
-                .replace('%PATHDIR_root_projektrepository%', str(PATHDIR_root_projektrepository))
-            )
-
+        self.target_project().obtain_target_repository_for_site(
+            PATHDIR_root_projektrepository=PATHDIR_root_projektrepository
+        )
 
         PATHfile_root_projektrepository_makepy = PATHDIR_root_projektrepository / 'make.py'
         subprocess.run(

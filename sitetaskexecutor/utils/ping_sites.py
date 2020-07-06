@@ -38,6 +38,7 @@ for pythonanywhere_username in pythonanywhere_usernames_list:
     not 'something went wrong :-(' in response_text\
 and not 'Hello, World!' in response_text\
 and not 'Coming Soon: PythonAnywhere' in response_text\
+and not '<body class="yota-theme" hidden="">' in response_text\
 and not '500 Internal Server Error' in response_text:
             is_online = True
 

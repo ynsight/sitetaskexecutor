@@ -145,6 +145,70 @@ pythonanywhere_username: '%pythonanywhere_username%'
             result = self.URLHTTPS_github_projekt_repository()
         return result
 
+    def _clone_target_repository_for_site_with_gitclone(self,
+        PATHDIR_root_projektrepository:Path=None,
+        URL_github_projekt_repository:str=None
+    ) -> None:
+        cmd_list = [
+            'git',
+            'clone',
+            URL_github_projekt_repository
+        ]
+
+        logger.info(
+'''Cloning target project="%NAME%"
+from URL_github_projekt_repository="%URL_github_projekt_repository%"
+to cwd PATHDIR_root="%PATHDIR_root%"
+with cmd="%cmd%"
+results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
+            .replace('%NAME%', self.NAME())
+            .replace('%URL_github_projekt_repository%', URL_github_projekt_repository)
+            .replace('%PATHDIR_root%', str(self.PATHDIR_root()))
+            .replace('%cmd%', ' '.join(cmd_list))
+            .replace('%PATHDIR_root_projektrepository%', str(PATHDIR_root_projektrepository))
+        )
+
+        subprocess.run(
+            cmd_list,
+            cwd=str(self.PATHDIR_root())
+        )
+
+    def _clone_target_repository_for_site_with_githubdl(self,
+        PATHDIR_root_projektrepository:Path=None,
+        URL_github_projekt_repository:str=None
+    ) -> None:
+        pass
+
+    def clone_target_repository_for_site(self,
+        PATHDIR_root_projektrepository:Path=None,
+        URL_github_projekt_repository:str=None
+    ) -> None:
+        raise NotImplementedError
+
+    def obtain_target_repository_for_site(self,
+        PATHDIR_root_projektrepository:Path=None
+    ) -> None:
+        logger.info(
+'''Checking existance of repository to clone (project="%NAME%") at 
+PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
+            .replace('%NAME%', self.NAME())
+            .replace('%PATHDIR_root_projektrepository%', str(PATHDIR_root_projektrepository))
+        )
+        if not PATHDIR_root_projektrepository.is_dir():
+            self.clone_target_repository_for_site(
+                PATHDIR_root_projektrepository=PATHDIR_root_projektrepository,
+                URL_github_projekt_repository=self.URLSSH_github_projekt_repository()
+            )
+
+        else:
+            logger.info(
+'''Skipping cloning target project="%NAME%"
+result already exist in PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"...'''
+                .replace('%NAME%', self.NAME())
+                .replace('%PATHDIR_root_projektrepository%', str(PATHDIR_root_projektrepository))
+            )
+
+
     def upload_on_pypi(self) -> None:
         PATHDIR_testpy = self.task().PATHDIR_root() / 'pypi'
         if PATHDIR_testpy.is_dir():

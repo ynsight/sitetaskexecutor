@@ -32,3 +32,12 @@ class una_Gitproject(
             str(self.task().PATHDIR_root() / Path(self.NAME(), 'src', 'una', 'lib')),
             str(self.task().PATHDIR_root() / Path(self.NAME(), 'src', 'una_factory', 'lib')),
         ]
+
+    def clone_target_repository_for_site(self,
+        PATHDIR_root_projektrepository:Path=None,
+        URL_github_projekt_repository:str=None
+    ) -> None:
+        self._clone_target_repository_for_site_with_gitclone(
+            PATHDIR_root_projektrepository=PATHDIR_root_projektrepository,
+            URL_github_projekt_repository=URL_github_projekt_repository
+        )
