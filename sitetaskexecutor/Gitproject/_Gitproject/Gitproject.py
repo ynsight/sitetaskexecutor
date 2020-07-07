@@ -177,7 +177,18 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
         PATHDIR_root_projektrepository:Path=None,
         URL_github_projekt_repository:str=None
     ) -> None:
-        pass
+        if not PATHDIR_root_projektrepository.is_dir():
+            PATHDIR_root_projektrepository.mkdir(
+                parents=True
+            )
+
+        from ynsbase.third import githubdl
+        githubdl.dl_dir(URL_github_projekt_repository, "_projekt", str(PATHDIR_root_projektrepository / '_projekt'))
+
+        githubdl.dl_file(URL_github_projekt_repository, "LICENSE.txt", str(PATHDIR_root_projektrepository / 'LICENSE.txt'))
+        githubdl.dl_file(URL_github_projekt_repository, "README.md", str(PATHDIR_root_projektrepository / 'README.md'))
+        githubdl.dl_file(URL_github_projekt_repository, "VERSION", str(PATHDIR_root_projektrepository / 'VERSION'))
+        githubdl.dl_file(URL_github_projekt_repository, "make.py", str(PATHDIR_root_projektrepository / 'make.py'))
 
     def clone_target_repository_for_site(self,
         PATHDIR_root_projektrepository:Path=None,
