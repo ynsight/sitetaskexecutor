@@ -167,9 +167,9 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
 '''import sys, os
 from pathlib import Path
 
-sys.path = [
-    '%PATHDIR_root_out_projekt_pythonpath%',
-    '%PATHDIR_root_out_site%'%additional_pythonpaths%
+sys.path = [,
+    '%PATHDIR_root_out_site%',
+    '%PATHDIR_root_out_projekt_pythonpath%'%additional_pythonpaths%
 ] + sys.path
 
 from sitepub_%NAME%.Sitepubapp import create_app
