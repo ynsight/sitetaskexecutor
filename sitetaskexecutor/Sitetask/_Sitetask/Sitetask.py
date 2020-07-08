@@ -91,14 +91,33 @@ class Sitetask:
             )
             self._projekts_list.append(projekt)
 
-        PATHFILE_YNSIGHT_GITHUB_TOKEN_txt = PATHFILE_executetaskpy.parent.parent.parent / 'YNSIGHT_GITHUB_TOKEN.txt'
-        if PATHFILE_YNSIGHT_GITHUB_TOKEN_txt.is_file():
-            YNSIGHT_GITHUB_TOKEN = PATHFILE_YNSIGHT_GITHUB_TOKEN_txt.read_text()
-            os.environ['YNSIGHT_GITHUB_TOKEN'] = YNSIGHT_GITHUB_TOKEN
-
 
     def NAME(self) -> str:
         return self.__class__.__name__[:-5]
+
+
+    # YNSIGHT_GITHUB_TOKEN:
+    def PATHFILE_YNSIGHT_GITHUB_TOKEN_txt(self) -> Path:
+        return self.PATHDIR_home_pythonanywhereusername() / 'YNSIGHT_GITHUB_TOKEN.txt'
+
+    def YNSIGHT_GITHUB_TOKEN(self) -> str:
+        if self.PATHFILE_YNSIGHT_GITHUB_TOKEN_txt().is_file():
+            result = self.PATHFILE_YNSIGHT_GITHUB_TOKEN_txt().read_text()
+        else:
+            result = None
+        return result
+
+
+    # YNSIGHT_PYPI_PWD:
+    def PATHFILE_YNSIGHT_PYPI_PWD_txt(self) -> Path:
+        return self.PATHDIR_home_pythonanywhereusername() / 'YNSIGHT_PYPI_PWD.txt'
+
+    def YNSIGHT_PYPI_PWD(self) -> str:
+        if self.PATHFILE_YNSIGHT_PYPI_PWD_txt().is_file():
+            result = self.PATHFILE_YNSIGHT_PYPI_PWD_txt().read_text()
+        else:
+            result = None
+        return result
 
 
     # pythonanywhere:

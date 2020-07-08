@@ -182,13 +182,15 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
                 parents=True
             )
 
-        from ynsbase.third import githubdl
-        githubdl.dl_dir(URL_github_projekt_repository, "_projekt", str(PATHDIR_root_projektrepository / '_projekt'))
+        YNSIGHT_GITHUB_TOKEN = Path(self.task().PATHDIR_home_pythonanywhereusername(), 'YNSIGHT_GITHUB_TOKEN.txt')
+        if isinstance(YNSIGHT_GITHUB_TOKEN, str):
+            from ynsbase.third import githubdl
+            githubdl.dl_dir(URL_github_projekt_repository, "_projekt", str(PATHDIR_root_projektrepository / '_projekt'), github_token=YNSIGHT_GITHUB_TOKEN)
 
-        githubdl.dl_file(URL_github_projekt_repository, "LICENSE.txt", str(PATHDIR_root_projektrepository / 'LICENSE.txt'))
-        githubdl.dl_file(URL_github_projekt_repository, "README.md", str(PATHDIR_root_projektrepository / 'README.md'))
-        githubdl.dl_file(URL_github_projekt_repository, "VERSION", str(PATHDIR_root_projektrepository / 'VERSION'))
-        githubdl.dl_file(URL_github_projekt_repository, "make.py", str(PATHDIR_root_projektrepository / 'make.py'))
+            githubdl.dl_file(URL_github_projekt_repository, "LICENSE.txt", str(PATHDIR_root_projektrepository / 'LICENSE.txt'), github_token=YNSIGHT_GITHUB_TOKEN)
+            githubdl.dl_file(URL_github_projekt_repository, "README.md", str(PATHDIR_root_projektrepository / 'README.md'), github_token=YNSIGHT_GITHUB_TOKEN)
+            githubdl.dl_file(URL_github_projekt_repository, "VERSION", str(PATHDIR_root_projektrepository / 'VERSION'), github_token=YNSIGHT_GITHUB_TOKEN)
+            githubdl.dl_file(URL_github_projekt_repository, "make.py", str(PATHDIR_root_projektrepository / 'make.py'), github_token=YNSIGHT_GITHUB_TOKEN)
 
     def clone_target_repository_for_site(self,
         PATHDIR_root_projektrepository:Path=None,
@@ -270,10 +272,10 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
             .replace('%PATHDIR_testpy_projektrepository%', str(PATHDIR_testpy_projektrepository))
         )
 
-        PATHFILE_YNSIGHT_PYPI_PWD_txt = Path(self.task().PATHDIR_home_pythonanywhereusername(), 'YNSIGHT_PYPI_PWD.txt')
-        if PATHFILE_YNSIGHT_PYPI_PWD_txt.is_file():
+        YNSIGHT_PYPI_PWD = Path(self.task().PATHDIR_home_pythonanywhereusername(), 'YNSIGHT_PYPI_PWD.txt')
+        if isinstance(YNSIGHT_PYPI_PWD, str):
             os.environ['TWINE_USERNAME'] = 'ynsight'
-            os.environ['TWINE_PASSWORD'] = PATHFILE_YNSIGHT_PYPI_PWD_txt.read_text()
+            os.environ['TWINE_PASSWORD'] = YNSIGHT_PYPI_PWD
             subprocess.run(
                 [
                     'python3',
@@ -282,7 +284,7 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
                 cwd=str(PATHDIR_testpy_projektrepository)
             )
         else:
-            logger.error('PATHFILE_YNSIGHT_PYPI_PWD_txt NOT exists at "%PATHFILE%", upload canceled...'.replace('%PATHFILE%', PATHFILE_YNSIGHT_PYPI_PWD_txt))
+            logger.error('PATHFILE_YNSIGHT_PYPI_PWD_txt NOT exists at "%PATHFILE%", upload canceled...'.replace('%PATHFILE%', self.task().PATHFILE_YNSIGHT_PYPI_PWD_txt()))
 
 
     # pythonanywhere:
