@@ -173,6 +173,12 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
             cwd=str(self.PATHDIR_root())
         )
 
+    def sitepub_github_dirs(self) -> List[str]:
+        return []
+
+    def sitepub_github_files(self) -> List[str]:
+        return []
+
     def _clone_target_repository_for_site_with_githubdl(self,
         PATHDIR_root_projektrepository:Path=None,
         URL_github_projekt_repository:str=None
@@ -182,15 +188,26 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
                 parents=True
             )
 
-        YNSIGHT_GITHUB_TOKEN = Path(self.task().PATHDIR_home_pythonanywhereusername(), 'YNSIGHT_GITHUB_TOKEN.txt')
+        YNSIGHT_GITHUB_TOKEN = self.task().YNSIGHT_GITHUB_TOKEN()
+
         if isinstance(YNSIGHT_GITHUB_TOKEN, str):
             from ynsbase.third import githubdl
-            githubdl.dl_dir(URL_github_projekt_repository, "_projekt", str(PATHDIR_root_projektrepository / '_projekt'), github_token=YNSIGHT_GITHUB_TOKEN)
 
-            githubdl.dl_file(URL_github_projekt_repository, "LICENSE.txt", str(PATHDIR_root_projektrepository / 'LICENSE.txt'), github_token=YNSIGHT_GITHUB_TOKEN)
-            githubdl.dl_file(URL_github_projekt_repository, "README.md", str(PATHDIR_root_projektrepository / 'README.md'), github_token=YNSIGHT_GITHUB_TOKEN)
-            githubdl.dl_file(URL_github_projekt_repository, "VERSION", str(PATHDIR_root_projektrepository / 'VERSION'), github_token=YNSIGHT_GITHUB_TOKEN)
-            githubdl.dl_file(URL_github_projekt_repository, "make.py", str(PATHDIR_root_projektrepository / 'make.py'), github_token=YNSIGHT_GITHUB_TOKEN)
+            for sitepub_github_dir in self.sitepub_github_dirs():
+                githubdl.dl_dir(
+                    URL_github_projekt_repository,
+                    sitepub_github_dir,
+                    str(PATHDIR_root_projektrepository / sitepub_github_dir),
+                    github_token=YNSIGHT_GITHUB_TOKEN
+                )
+
+            for sitepub_github_file in self.sitepub_github_files():
+                githubdl.dl_file(
+                    URL_github_projekt_repository,
+                    sitepub_github_file,
+                    str(PATHDIR_root_projektrepository / sitepub_github_file),
+                    github_token=YNSIGHT_GITHUB_TOKEN
+                )
 
     def clone_target_repository_for_site(self,
         PATHDIR_root_projektrepository:Path=None,

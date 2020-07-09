@@ -124,11 +124,11 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
             PATHDIR_root_projektrepository=PATHDIR_root_projektrepository
         )
 
-        PATHfile_root_projektrepository_makepy = PATHDIR_root_projektrepository / 'make.py'
+        PATHfile_root_projektrepository_makesitepubpy = PATHDIR_root_projektrepository / 'make_sitepub.py'
         subprocess.run(
             [
                 'python3.6',
-                PATHfile_root_projektrepository_makepy
+                PATHfile_root_projektrepository_makesitepubpy
             ],
             cwd=PATHDIR_root_projektrepository
         )
@@ -167,7 +167,7 @@ PATHFILE_home_pythonanywhereusername_updatepy: '%PATHFILE_home_pythonanywhereuse
 '''import sys, os
 from pathlib import Path
 
-sys.path = [,
+sys.path = [
     '%PATHDIR_root_out_site%',
     '%PATHDIR_root_out_projekt_pythonpath%'%additional_pythonpaths%
 ] + sys.path

@@ -32,3 +32,16 @@ class letters_Gitproject(
             PATHDIR_root_projektrepository=PATHDIR_root_projektrepository,
             URL_github_projekt_repository=URL_github_projekt_repository
         )
+
+    def sitepub_github_dirs(self) -> List[str]:
+        return [
+            '_projekt'
+        ]
+
+    def sitepub_github_files(self) -> List[str]:
+        return [
+            'LICENSE.txt',
+            'README.md',
+            'VERSION',
+            'make_sitepub.py'
+        ]
