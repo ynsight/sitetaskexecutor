@@ -191,7 +191,7 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
         YNSIGHT_GITHUB_TOKEN = self.task().YNSIGHT_GITHUB_TOKEN()
 
         if isinstance(YNSIGHT_GITHUB_TOKEN, str):
-            from ynsbase.third import githubdl
+            from sitetaskexecutor.third import githubdl
 
             for sitepub_github_dir in self.sitepub_github_dirs():
                 githubdl.dl_dir(

@@ -34,7 +34,7 @@ class rs_Gitproject(
         PATHDIR_root_projektrepository:Path=None,
         URL_github_projekt_repository:str=None
     ) -> None:
-        self._clone_target_repository_for_site_with_gitclone(
+        self._clone_target_repository_for_site_with_githubdl(
             PATHDIR_root_projektrepository=PATHDIR_root_projektrepository,
             URL_github_projekt_repository=URL_github_projekt_repository
         )
