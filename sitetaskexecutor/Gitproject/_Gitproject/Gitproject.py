@@ -309,42 +309,38 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
         raise NotImplementedError
 
     def uninstall_as_package(self) -> None:
-        logger.info('Unnstall as package "%projekt%"...'.replace('%projekt%', self.NAME()))
+        logger.info('Unnstalling as package "%projekt%"...'.replace('%projekt%', self.NAME()))
         if self.is_uninstall_as_package_supported():
             PATHDIR_venvsitepackages = self.task().PATHDIR_venvsitepackages()
 
-            logger.info('Remove "%projekt%" package...'.replace('%projekt%', self.NAME()))
-            prev_installation_exists = False
+
+            logger.info('Removing "%projekt%" package directory...'.replace('%projekt%', self.NAME()))
             if PATHDIR_venvsitepackages.is_dir():
                 for item in os.listdir(PATHDIR_venvsitepackages):
                     PATHDIR_item = PATHDIR_venvsitepackages / item
 
                     if PATHDIR_item.is_dir():
                         if item == self.NAME() or item.startswith(self.NAME() + '-'):
-                            logger.info('Previous installation exists, deleting("' + str(PATHDIR_item) + '")...')
+                            logger.info('Found matched directory("' + str(PATHDIR_item) + '"), deleting...')
                             shutil.rmtree(
                                 PATHDIR_item,
                                 ignore_errors=True
                             )
-                            prev_installation_exists = True
-                        else:
-                            logger.info('Item is NOT previous installation, skipping("' + str(PATHDIR_item) + '")...')
+            logger.info('Removed "%projekt%" package directory!'.replace('%projekt%', self.NAME()))
 
-            logger.info('Removed "%projekt%" package!'.replace('%projekt%', self.NAME()))
 
-            logger.info('Remove "%projekt%" executables...'.replace('%projekt%', self.NAME()))
+            logger.info('Removing "%projekt%" executables files...'.replace('%projekt%', self.NAME()))
             for package_executable in self.package_executables():
                 PATHFILE_package_executable = self.task().PATHDIR_venvbin() / package_executable
 
                 if PATHFILE_package_executable.is_file():
                     logger.info('Executable exists, deleting("' + str(PATHFILE_package_executable) + '")...')
                     os.remove(str(PATHFILE_package_executable))
-                    prev_installation_exists = True
                 else:
                     logger.info('Executable NOT exists, skipping("' + str(PATHFILE_package_executable) + '")...')
+            logger.info('Removed "%projekt%" executables files!'.replace('%projekt%', self.NAME()))
 
-            if not prev_installation_exists:
-                logger.info('Previous installation NOT exists, skipping')
+
             logger.info('Uninstall as package "%projekt%"!'.replace('%projekt%', self.NAME()))
         else:
             logger.info('Uninstall as package "%projekt%" is NOT supported!'.replace('%projekt%', self.NAME()))
