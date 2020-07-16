@@ -289,7 +289,7 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
             .replace('%PATHDIR_testpy_projektrepository%', str(PATHDIR_testpy_projektrepository))
         )
 
-        YNSIGHT_PYPI_PWD = Path(self.task().PATHDIR_home_pythonanywhereusername(), 'YNSIGHT_PYPI_PWD.txt')
+        YNSIGHT_PYPI_PWD = self.task().PATHFILE_YNSIGHT_PYPI_PWD_txt().read_text()
         if isinstance(YNSIGHT_PYPI_PWD, str):
             os.environ['TWINE_USERNAME'] = 'ynsight'
             os.environ['TWINE_PASSWORD'] = YNSIGHT_PYPI_PWD
@@ -301,7 +301,10 @@ results with PATHDIR_testpy_projektrepository="%PATHDIR_testpy_projektrepository
                 cwd=str(PATHDIR_testpy_projektrepository)
             )
         else:
-            logger.error('PATHFILE_YNSIGHT_PYPI_PWD_txt NOT exists at "%PATHFILE%", upload canceled...'.replace('%PATHFILE%', self.task().PATHFILE_YNSIGHT_PYPI_PWD_txt()))
+            logger.error(
+                'PATHFILE_YNSIGHT_PYPI_PWD_txt NOT exists at "%PATHFILE%", upload canceled...'
+                    .replace('%PATHFILE%', str(self.task().PATHFILE_YNSIGHT_PYPI_PWD_txt()))
+            )
 
 
     # pythonanywhere:
