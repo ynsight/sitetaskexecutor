@@ -45,3 +45,6 @@ class sc_Gitproject(
             'VERSION',
             'make_sitepub.py'
         ]
+
+    def sitepub_package_name(self) -> str:
+        return 'sitepub_sc__org_cg'

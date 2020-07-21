@@ -179,6 +179,9 @@ results with PATHDIR_root_projektrepository="%PATHDIR_root_projektrepository%"..
     def sitepub_github_files(self) -> List[str]:
         return []
 
+    def sitepub_package_name(self) -> str:
+        return 'sitepub_' + self.NAME()
+
     def _clone_target_repository_for_site_with_githubdl(self,
         PATHDIR_root_projektrepository:Path=None,
         URL_github_projekt_repository:str=None

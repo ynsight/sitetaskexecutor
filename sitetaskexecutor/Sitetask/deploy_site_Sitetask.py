@@ -172,7 +172,7 @@ sys.path = [
     '%PATHDIR_root_out_projekt_pythonpath%'%additional_pythonpaths%
 ] + sys.path
 
-from sitepub_%NAME%.Sitepubapp import create_app
+from %sitepub_package_name%.Sitepubapp import create_app
 
 application = create_app()'''
 
@@ -191,7 +191,7 @@ application = create_app()'''
         wsgipy_fc = wsgipy_template\
             .replace('%PATHDIR_root_out_projekt_pythonpath%', str(PATHDIR_root_out_projekt_pythonpath))\
             .replace('%PATHDIR_root_out_site%', str(PATHDIR_root_out_site))\
-            .replace('%NAME%', self.target_project().NAME())\
+            .replace('%sitepub_package_name%', self.target_project().sitepub_package_name())\
             .replace('%additional_pythonpaths%', textwrap.indent(additional_pythonpaths_result, 4*' '))
 
         self.PATHFILE_wsgipy().write_text(
