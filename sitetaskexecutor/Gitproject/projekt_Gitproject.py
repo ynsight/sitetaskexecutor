@@ -51,3 +51,6 @@ class projekt_Gitproject(
             'VERSION',
             'make_sitepub.py'
         ]
+
+    def sitepub_package_name_postfix(self) -> str:
+        return ''

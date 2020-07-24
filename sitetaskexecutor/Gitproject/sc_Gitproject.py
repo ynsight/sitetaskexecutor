@@ -46,5 +46,5 @@ class sc_Gitproject(
             'make_sitepub.py'
         ]
 
-    def sitepub_package_name(self) -> str:
-        return 'sitepub_sc__org_cg'
+    def sitepub_package_name_postfix(self) -> str:
+        return '__org_cg'
