@@ -35,7 +35,8 @@ class rsdata_Gitproject(
 
     def sitepub_github_dirs(self) -> List[str]:
         return [
-            '_projekt'
+            '_projekt',
+            'assets_rsdata'
         ]
 
     def sitepub_github_files(self) -> List[str]:
