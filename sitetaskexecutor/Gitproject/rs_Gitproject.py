@@ -20,11 +20,11 @@ class rs_Gitproject(
 
     def package_executables(self) -> List[str]:
         return [
-            'rt',
-            'rt.sh',
-            'rt.bat',
-            'rt_.py',
-            'rt.py'
+            'rsproj',
+            'rsproj.sh',
+            'rsproj.bat',
+            'rsproj_.py',
+            'rsproj.py'
         ]
 
     def additional_pythonpaths(self) -> List[str]:
