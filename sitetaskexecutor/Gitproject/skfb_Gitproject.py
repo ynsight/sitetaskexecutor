@@ -22,7 +22,9 @@ class skfb_Gitproject(
         return []
 
     def additional_pythonpaths(self) -> List[str]:
-        return []
+        return [
+            str(self.task().PATHDIR_root() / 'skfb/src/lib')
+        ]
 
     def clone_target_repository_for_site(self,
         PATHDIR_root_projektrepository:Path=None,
