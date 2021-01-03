@@ -23,6 +23,7 @@ class deploy_site_Sitetask(
         target_project = {
             'getagent': agent_Gitproject,
             'getynsbase': ynsbase_Gitproject,
+            'getneon': neon_Gitproject,
             'getletters': letters_Gitproject,
             'getprojekt': projekt_Gitproject,
             'getmyrta': myrta_Gitproject,
@@ -204,23 +205,23 @@ application = create_app()'''
                 .replace('%PATHFILE_wsgipy%', str(self.PATHFILE_wsgipy()))
         )
 
-        import requests,urllib3
-        try:
-            request_result = requests.get(
-                'http://%pythonanywhere_username%.pythonanywhere.com/'
-                    .replace(
-                        '%pythonanywhere_username%',
-                        self.target_project().pythonanywhere_username()
-                    ),
-                # timeout=self._request_timeout
-            )
-            print(request_result.text)
-
-        except requests.exceptions.Timeout as e:
-            print(e)
-
-        except urllib3.exceptions.MaxRetryError as e:
-            print(e)
-
-        except requests.exceptions.ConnectionError as e:
-            print(e)
+        # import requests,urllib3
+        # try:
+        #     request_result = requests.get(
+        #         'http://%pythonanywhere_username%.pythonanywhere.com/'
+        #             .replace(
+        #                 '%pythonanywhere_username%',
+        #                 self.target_project().pythonanywhere_username()
+        #             ),
+        #         # timeout=self._request_timeout
+        #     )
+        #     print(request_result.text)
+        #
+        # except requests.exceptions.Timeout as e:
+        #     print(e)
+        #
+        # except urllib3.exceptions.MaxRetryError as e:
+        #     print(e)
+        #
+        # except requests.exceptions.ConnectionError as e:
+        #     print(e)

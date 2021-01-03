@@ -1,4 +1,6 @@
 import logging
+
+
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
 formatter = logging.Formatter("[task] - %(asctime)s - %(levelname)s - %(message)s")
@@ -28,6 +30,7 @@ from sitetaskexecutor.Gitproject.sc_Gitproject import sc_Gitproject
 from sitetaskexecutor.Gitproject.skfb_Gitproject import skfb_Gitproject
 from sitetaskexecutor.Gitproject.sola_Gitproject import sola_Gitproject
 from sitetaskexecutor.Gitproject.ynsbase_Gitproject import ynsbase_Gitproject
+from sitetaskexecutor.Gitproject.neon_Gitproject import neon_Gitproject
 from sitetaskexecutor.Gitproject.ynsight_Gitproject import ynsight_Gitproject
 
 class Sitetask:
@@ -62,6 +65,8 @@ class Sitetask:
         return [
             agent_Gitproject,
             ynsbase_Gitproject,
+            neon_Gitproject,
+            neon_Gitproject,
             letters_Gitproject,
             projekt_Gitproject,
             myrta_Gitproject,
@@ -73,7 +78,6 @@ class Sitetask:
             fw_Gitproject,
             sola_Gitproject,
             Ln_Gitproject,
-
             ynsight_Gitproject
         ]
 
