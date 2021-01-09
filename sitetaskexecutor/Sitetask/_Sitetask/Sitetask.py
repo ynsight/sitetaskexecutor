@@ -32,6 +32,7 @@ from sitetaskexecutor.Gitproject.sola_Gitproject import sola_Gitproject
 from sitetaskexecutor.Gitproject.ynsbase_Gitproject import ynsbase_Gitproject
 from sitetaskexecutor.Gitproject.neon_Gitproject import neon_Gitproject
 from sitetaskexecutor.Gitproject.ynsight_Gitproject import ynsight_Gitproject
+from sitetaskexecutor.Gitproject.wdh_Gitproject import wdh_Gitproject
 
 class Sitetask:
 
@@ -78,7 +79,8 @@ class Sitetask:
             fw_Gitproject,
             sola_Gitproject,
             Ln_Gitproject,
-            ynsight_Gitproject
+            ynsight_Gitproject,
+            wdh_Gitproject
         ]
 
 

@@ -35,6 +35,7 @@ class deploy_site_Sitetask(
             'getfw': fw_Gitproject,
             'getsola': sola_Gitproject,
             'getln': Ln_Gitproject,
+            'getwdh': wdh_Gitproject,
 
             'ynsight': ynsight_Gitproject
         }[pythonanywhere_username]()
